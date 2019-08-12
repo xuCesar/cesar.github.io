@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://cesar.github.io/</id>
+    <id>http://xusz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-08-12T09:56:54.132Z</updated>
+    <updated>2019-08-12T10:16:15.743Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://cesar.github.io/"/>
-    <link rel="self" href="https://cesar.github.io//atom.xml"/>
+    <link rel="alternate" href="http://xusz.github.io"/>
+    <link rel="self" href="http://xusz.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://cesar.github.io//images/avatar.png</logo>
-    <icon>https://cesar.github.io//favicon.ico</icon>
+    <logo>http://xusz.github.io/images/avatar.png</logo>
+    <icon>http://xusz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://cesar.github.io//post/hello-gridea</id>
-        <link href="https://cesar.github.io//post/hello-gridea">
+        <id>http://xusz.github.io/post/hello-gridea</id>
+        <link href="http://xusz.github.io/post/hello-gridea">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
