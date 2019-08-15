@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
     <title>Gridea</title>
-    <updated>2019-08-13T15:35:26.713Z</updated>
+    <updated>2019-08-15T04:52:24.488Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
     <link rel="self" href="https://blog.xusz.cn//atom.xml"/>
@@ -122,7 +122,9 @@ function App() {
  }
 &lt;/div&gt;
 </code></pre>
-<h3 id="props数据传递">Props数据传递</h3>
+<h3 id="数据传递">数据传递</h3>
+<p>react是单向数据流的，数据只能自上而下的传递，</p>
+<h4 id="父组件传递到子组件">父组件传递到子组件</h4>
 <pre><code>import React, {Component} from 'react';
 
 const ChildComponent = (props) =&gt; {
@@ -150,6 +152,45 @@ class App extends Component {
  }
 }
 </code></pre>
+<h4 id="子组件传递到父组件">子组件传递到父组件</h4>
+<p>父组件传给子组件自定义函数</p>
+<pre><code>class ParentComponent extends React.Component {
+ constructor(props){
+  super(props)
+  this.state = {
+	 name: ''
+	}
+ }
+ 
+ handleChange = (e) =&gt; {
+   this.setState({
+    name: e.target.value
+   })
+ }
+	
+ render(){
+  return (
+	 &lt;div&gt;
+	  &lt;h3&gt;You name is : {this.state.name}&lt;/h3&gt;
+		&lt;Child updateName={this.handleChange} /&gt;
+	 &lt;/div&gt;
+	)
+ }
+}
+</code></pre>
+<p>子组件通过调用父组件传过来的函数，把数据返回给父组件</p>
+<pre><code>const Child = (props) =&gt; {
+ return (
+  &lt;input
+	 type=&quot;text&quot; 
+   onChange={props.updateName} 
+   placeholder='Please input you name'
+  /&gt;
+ )
+}
+</code></pre>
+<h4 id="兄弟组件通信">兄弟组件通信</h4>
+<p>兄弟组件通信太烦了<sub>割了</sub>以后学习context和redux吧</p>
 <h3 id="数据类型检查">数据类型检查</h3>
 <p>采用<code>prop-types</code>对数据进行类型验证，可以确保数据的准确性，快速定位存在的问题，防止因隐式转换带来的一些问题等。</p>
 <pre><code>import PropTypes from 'prop-types';
@@ -186,7 +227,7 @@ ChildComponent.propTypes = {
 }
 </code></pre>
 <h3 id="无状态组件">无状态组件</h3>
-<p>没有副作用，相同的输入，总会有相同的输出。</p>
+<p>相同的输入，总会有相同的输出。组件的输出结果完全由props决定，且没有任何副作用</p>
 <pre><code>const ChildComponent = (props) =&gt; {
 	return (
 		&lt;div&gt;
