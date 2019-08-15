@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
     <title>Gridea</title>
-    <updated>2019-08-15T04:52:24.488Z</updated>
+    <updated>2019-08-15T04:53:15.831Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
     <link rel="self" href="https://blog.xusz.cn//atom.xml"/>
@@ -123,7 +123,7 @@ function App() {
 &lt;/div&gt;
 </code></pre>
 <h3 id="数据传递">数据传递</h3>
-<p>react是单向数据流的，数据只能自上而下的传递，</p>
+<p>react是单向数据流的，数据只能自上而下的传递</p>
 <h4 id="父组件传递到子组件">父组件传递到子组件</h4>
 <pre><code>import React, {Component} from 'react';
 
