@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
     <title>Gridea</title>
-    <updated>2019-09-21T16:56:24.016Z</updated>
+    <updated>2019-09-21T16:59:54.047Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
     <link rel="self" href="https://blog.xusz.cn//atom.xml"/>
@@ -309,7 +309,7 @@ downloadFile(url);
 });
 </code></pre>
 <h3 id="总结">总结</h3>
-<p>Axios在一个轻量易用的HTTP解决方案，可以满足开发者大多数的网络通信需求。然而，如果你更喜欢使用本机APIs，那么你可以发挥自己的编程能力实现类Axios的特性。</p>
+<p>Axios是一个轻量易用的HTTP解决方案，可以满足开发者大多数的网络通信需求。然而，如果你更喜欢使用本机APIs，那么你可以发挥自己的编程能力实现类Axios的特性。</p>
 <p>如本文所讨论的，使用浏览器自带的<code>fetch()</code>方法完全有可能再现Axios库的关键特性。最终，是否值得加载一个客户端的超文本传输协议应用程序接口取决于你是否愿意使用内置的应用程序接口。</p>
 <p>以上</p>
 ]]></content>
