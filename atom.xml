@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
     <title>@你坑到我了</title>
-    <updated>2020-04-24T14:11:32.128Z</updated>
+    <updated>2020-04-24T14:15:10.437Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
     <link rel="self" href="https://blog.xusz.cn/atom.xml"/>
@@ -396,133 +396,6 @@ downloadFile(url);
 </code></pre>
 <p>服务器收到请求后，会根据<code>If-None-Match</code>来判断请求的资源有没有被更新，如果更新了，则直接返回最新的资源，如果没有更新，则返回304状态码，告诉浏览器，缓存资源可以继续使用。</p>
 <h3 id="总结">总结</h3>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello React （Vol. 2）]]></title>
-        <id>https://blog.xusz.cn/hello-react-vol2/</id>
-        <link href="https://blog.xusz.cn/hello-react-vol2/">
-        </link>
-        <updated>2019-08-15T05:06:22.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="purecomponent">PureComponent</h3>
-<p>无状态组件多数为展示型组件，根据传递过来的数据，展示既定的内容，这种情形下，我们可以对无状态组件进行一定程度上的优化。</p>
-<pre><code class="language-javascript">
-const Content = (props) =&gt; {
- console.log('Content')
- return (
-  &lt;div&gt;{props.name}&lt;/div&gt;
- )
-}
-
-class App extends React.Component {
-
- state = {
-  name: 'react'，
-	num: [1, 2]
- }
- 
- componentDidMount() {
-  setInterval(() =&gt; {
-	 this.setState({
-	  name: 'react'
-	 })
-	}, 2000)
- }
- 
- render() {
-  console.log('render')
-	return (
-	 &lt;div&gt;
-	  &lt;Content name={this.state.name} /&gt;
-	 &lt;/div&gt;
-	)
- }
- 
-}
-</code></pre>
-<p>以上代码中，组件挂载后，执行一个定时器，每隔2秒对name进行一个相同的赋值。这个时候，组件的state实际上是没有发生改变，但我们可以从控制台里看到，组件仍然在被render。显然，这会降低react的渲染效率。那么我们如何在组件状态未发生变化时，阻止组件重绘？</p>
-<p>react提供了一个生命周期函数<code>shouldComponentUpdate</code>，这个函数返回布尔值，当返回值为false时，组件将不再进行渲染。</p>
-<pre><code class="language-javascript">shouldComponentUpdate(nextProps, nextState) {
- return (
-  this.state.name === nextState.name ? false : true
- )
-}
-</code></pre>
-<p>加上这个生命周期函数后，组件已经不再重绘，但是我们注意到，<code>shouldComponentUpdate</code>仍然在执行，这显然不是我们想要的结果。</p>
-<p>这里，react引入了<code>PureComponent</code>组件，它和<code>Component</code>组件比较相似，只是<code>PureComponent</code>会对state和props进行<code>浅比较</code>：即当基本类型数据的值未发生改变时，视作不更新；引用类型数据的引用（内存中的地址）未发生改变时，同样视作不更新。</p>
-<p>这里可以了解下<a href="https://github.com/immutable-js/immutable-js">immutable.js</a>。</p>
-<p>修改Content组件</p>
-<pre><code class="language-javascript">...
-
-class Content extends React.PureComponent {
- render() {
-  console.log('render content')
-	return (
-	 &lt;div&gt;{this.props.name}&lt;/div&gt;
-	)
- }
-}
-
-...
-</code></pre>
-<p>引用类型数据，直接更新数组的值，无法引起重绘，对象类型数据也一样。</p>
-<pre><code class="language-javascript">...
-
- componentDidMount() {
-  let arr = this.state.num
-	arr.push(3)
-  setInterval(() =&gt; {
-	 this.setState({
-	  arr
-	 })
-	}, 2000)
- }
-
-...
-</code></pre>
-<p>因此，可以根据数据的状态和组件的类型，合理的选择使用<code>Component</code> <code>PureComponent</code>和<code>shouldComponentUpdate</code>。</p>
-<h3 id="fragment">Fragment</h3>
-<p>组件内的jsx必须拥有一个顶层容器，容器不可以并列，在下面的代码中，不使用div包裹了两个li，而是使用Fragment，一方便是出于html语义化的考虑，一方面是不会产生额外的dom。</p>
-<p>简写形式： &lt;&gt;&lt;/&gt;</p>
-<pre><code class="language-javascript">const List = () =&gt; {
- &lt;Fragment&gt;
-  &lt;li&gt;item1&lt;/li&gt;
-  &lt;li&gt;item2&lt;/li&gt;
- &lt;/Fragment&gt;
- 
- // 简写形式
- &lt;&gt;
-  &lt;li&gt;item1&lt;/li&gt;
-  &lt;li&gt;item2&lt;/li&gt;
- &lt;/&gt;
-}
-
-function App(){
-	return (
-	 &lt;ul&gt;
-	  &lt;List /&gt;
-	 &lt;/ul&gt;
-	)
-}
-</code></pre>
-<h3 id="context">Context</h3>
-<pre><code class="language-javascript">const Content = (props) =&gt; {
- return (
-  &lt;div&gt;{ props.name }&lt;/div&gt;
- )
-}
-
-class App extends Component {
- 
- render() {
-  return (
-	 &lt;div&gt;
-	  &lt;Content name={'xsz'} /&gt;
-	 &lt;/div&gt;
-	)
- }
-}
-</code></pre>
 ]]></content>
     </entry>
     <entry>
