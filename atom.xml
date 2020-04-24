@@ -1,19 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
-    <title>Gridea</title>
-    <updated>2019-09-21T17:01:44.976Z</updated>
+    <title>@你坑到我了</title>
+    <updated>2020-04-24T14:08:13.581Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
-    <link rel="self" href="https://blog.xusz.cn//atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://blog.xusz.cn//images/avatar.png</logo>
-    <icon>https://blog.xusz.cn//favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <link rel="self" href="https://blog.xusz.cn/atom.xml"/>
+    <subtitle>记录生活，学习以及碎碎念...</subtitle>
+    <logo>https://blog.xusz.cn/images/avatar.png</logo>
+    <icon>https://blog.xusz.cn/favicon.ico</icon>
+    <rights>All rights reserved 2020, @你坑到我了</rights>
+    <entry>
+        <title type="html"><![CDATA[刻意练习阅读随笔]]></title>
+        <id>https://blog.xusz.cn/du-ke-yi-lian-xi/</id>
+        <link href="https://blog.xusz.cn/du-ke-yi-lian-xi/">
+        </link>
+        <updated>2020-04-18T05:33:13.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="长时工作记忆">长时工作记忆</h3>
+<p>一种记忆能力，是刻意练习的指向和本质。</p>
+<h3 id="如何培养长时工作记忆">如何培养长时工作记忆？</h3>
+<p>选择合适的难度，重复练习，调整错误，重复练习。</p>
+<p><strong>赋予意义，精准编码</strong><br>
+了解、熟悉领域内的名词、术语，存储信息时，有意识的采取<code>元认知</code>的各项加工策略</p>
+<p><strong>提取结构或者模式</strong><br>
+提取专业领域内的结构或者模式，以更好（系统）的方式存储</p>
+<p><strong>加快速度，增加连接</strong><br>
+大量的重复的刻意练习，增加长时记忆与工作记忆的连接</p>
+<pre><code>元认知：对自我认知的再认知和调控的能力。
+</code></pre>
+<h3 id="认知差异">认知差异</h3>
+<p>对实体的认知差异对最终的结果有着相当大的影响。就像盖房子，直接平底而起的房子显然存在质量风险，而考虑过抗震，抗风等诸多因素，因地制宜的从地基开始修筑的房子显然更加的可靠。</p>
+<blockquote>
+<p>认知复杂度：是指构建客观世界的能力，认知复杂度高的人具有高度思维华的能力，更善于使用互补或者互斥的概念来理解客观世界。</p>
+</blockquote>
+<h3 id="隐性知识">隐性知识</h3>
+<p>隐性知识是指那些无法通过直接的书本学习或教授的而获得的知识。隐性知识需要在情境中去获取，在哪里用，就从哪里学。从情境出发，成为一名认知学徒开始，相比于独自学习更加高效。</p>
+<ul>
+<li>找到学习共同体</li>
+<li>隐性知识显性化</li>
+<li>模仿榜样</li>
+<li>培养多样性</li>
+</ul>
+<blockquote>
+<p>没有简单的模型通向伟大 —— 比尔·盖茨</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Axios 还是 fetch -- 你该如何选择？]]></title>
-        <id>https://blog.xusz.cn//post/axios-huan-shi-fetch-ni-gai-ru-he-xuan-ze</id>
-        <link href="https://blog.xusz.cn//post/axios-huan-shi-fetch-ni-gai-ru-he-xuan-ze">
+        <id>https://blog.xusz.cn/axios-huan-shi-fetch-ni-gai-ru-he-xuan-ze/</id>
+        <link href="https://blog.xusz.cn/axios-huan-shi-fetch-ni-gai-ru-he-xuan-ze/">
         </link>
         <updated>2019-09-21T13:25:10.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -316,8 +352,8 @@ downloadFile(url);
     </entry>
     <entry>
         <title type="html"><![CDATA[浏览器工作原理学习]]></title>
-        <id>https://blog.xusz.cn//post/liu-lan-qi-gong-zuo-yuan-li-yu-shi-xian-xue-xi</id>
-        <link href="https://blog.xusz.cn//post/liu-lan-qi-gong-zuo-yuan-li-yu-shi-xian-xue-xi">
+        <id>https://blog.xusz.cn/liu-lan-qi-gong-zuo-yuan-li-yu-shi-xian-xue-xi/</id>
+        <link href="https://blog.xusz.cn/liu-lan-qi-gong-zuo-yuan-li-yu-shi-xian-xue-xi/">
         </link>
         <updated>2019-09-17T08:51:49.000Z</updated>
         <content type="html"><![CDATA[<h2 id="tcp协议">TCP协议</h2>
@@ -364,8 +400,8 @@ downloadFile(url);
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello React （Vol.1）]]></title>
-        <id>https://blog.xusz.cn//post/hr</id>
-        <link href="https://blog.xusz.cn//post/hr">
+        <id>https://blog.xusz.cn/hr/</id>
+        <link href="https://blog.xusz.cn/hr/">
         </link>
         <updated>2019-08-13T08:11:16.000Z</updated>
         <content type="html"><![CDATA[<h3 id="介绍">介绍</h3>
@@ -590,38 +626,6 @@ ChildComponent.propTypes = {
 	)
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://blog.xusz.cn//post/hello-gridea</id>
-        <link href="https://blog.xusz.cn//post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>

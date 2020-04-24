@@ -1,0 +1,237 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>浏览器工作原理学习 | @你坑到我了</title>
+<meta name="description" content="记录生活，学习以及碎碎念..." />
+<link rel="shortcut icon" href="https://blog.xusz.cn//favicon.ico?v=1587737274964">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xusz.cn//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145634641-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145634641-1');
+</script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xusz.cn/">
+  <img class="avatar" src="https://blog.xusz.cn//images/avatar.png?v=1587737274964" alt="">
+  </a>
+  <h1 class="site-title">
+    @你坑到我了
+  </h1>
+  <p class="site-description">
+    记录生活，学习以及碎碎念...
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              浏览器工作原理学习
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-09-17
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="tcp协议">TCP协议</h2>
+<p>暂缓</p>
+<h2 id="http请求流程">HTTP请求流程</h2>
+<h3 id="请求流程">请求流程</h3>
+<h4 id="dns解析">DNS解析</h4>
+<p>获取IP和端口，解析前会查询缓存，这是一个<code>漫长</code>的过程如果匹配到，则中断解析，直接进入下一步。</p>
+<h4 id="建立tcp连接">建立TCP连接</h4>
+<h4 id="发送http请求">发送HTTP请求</h4>
+<p>一旦建立了TCP链接，客户端就可以和服务端通信了。HTTP中的数据，是在这个过程中传输的。</p>
+<p>浏览器首先会向服务器发送<code>请求行</code>，它包括了<code>请求方法</code>，<code>请求URI</code>，<code>HTTP版本协议</code>。目的是为了通知浏览器需要请求的资源。常用的方法是<code>Get</code>。</p>
+<p>在发送完请求行之后，还要以<code>请求头</code>的形式发送一些其他信息给服务器，比如操作系统，浏览器内核信息，域名信息，cookie等。</p>
+<h3 id="响应流程">响应流程</h3>
+<p>当服务端收到客户端的请求之后，服务端会根据请求信息进行处理。</p>
+<h4 id="响应请求">响应请求</h4>
+<p>首先返回响应行，包括协议版本和状态码。</p>
+<p>其次，发送响应头。响应头包含了服务端的一些信息，比如返回时间，数据类型以及Cookie等信息。</p>
+<p>最后发送响应体，也就是请求的实际内容。</p>
+<h4 id="断开连接">断开连接</h4>
+<p>通常情况下，当服务端返回了数据，就会关闭TCP连接。如果浏览器或者服务器的头信息中有如下：</p>
+<pre><code>Connection:Keep-Alive 
+</code></pre>
+<p>那么请求成功后，不会断开TCP连接，当同一站点内有其他请求的时候，可以使用同一个TCP连接，这样就可以节省建立连接的时间，提升请求响应速度。</p>
+<h3 id="缓存">缓存</h3>
+<p>第一次打开某个站点的时候，响应的速度可能比较慢。但二次打开就会快一些。这是因为浏览器缓存了一些数据：</p>
+<ol>
+<li>
+<p>DNS缓存</p>
+</li>
+<li>
+<p>静态资源缓存</p>
+</li>
+</ol>
+<p>缓存的的时效性通过在头信息中设置<code>Cache-Control</code>来控制：</p>
+<pre><code>Cache-Control:Max-age=60000
+</code></pre>
+<p>如果资源的没有过期，那么直接从缓存中读取；如果已经过期，则发起请求，并在请求头中带上：</p>
+<pre><code>If-None-Match:&quot;4f80f-13c-3a1xb12a&quot;
+</code></pre>
+<p>服务器收到请求后，会根据<code>If-None-Match</code>来判断请求的资源有没有被更新，如果更新了，则直接返回最新的资源，如果没有更新，则返回304状态码，告诉浏览器，缓存资源可以继续使用。</p>
+<h3 id="总结">总结</h3>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#tcp%E5%8D%8F%E8%AE%AE">TCP协议</a></li>
+<li><a href="#http%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B">HTTP请求流程</a>
+<ul>
+<li><a href="#%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B">请求流程</a>
+<ul>
+<li><a href="#dns%E8%A7%A3%E6%9E%90">DNS解析</a></li>
+<li><a href="#%E5%BB%BA%E7%AB%8Btcp%E8%BF%9E%E6%8E%A5">建立TCP连接</a></li>
+<li><a href="#%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82">发送HTTP请求</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%8D%E5%BA%94%E6%B5%81%E7%A8%8B">响应流程</a>
+<ul>
+<li><a href="#%E5%93%8D%E5%BA%94%E8%AF%B7%E6%B1%82">响应请求</a></li>
+<li><a href="#%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5">断开连接</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%93%E5%AD%98">缓存</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.xusz.cn/hr/">
+              <h3 class="post-title">
+                Hello React （Vol.1）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://blog.xusz.cn//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
