@@ -1,0 +1,281 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>小程序学习摘抄笔记 | @你坑到我了</title>
+<meta name="description" content="记录生活，学习以及碎碎念..." />
+<link rel="shortcut icon" href="https://blog.xusz.cn//favicon.ico?v=1588087041194">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://blog.xusz.cn//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145634641-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145634641-1');
+</script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.xusz.cn/">
+  <img class="avatar" src="https://blog.xusz.cn//images/avatar.png?v=1588087041194" alt="">
+  </a>
+  <h1 class="site-title">
+    @你坑到我了
+  </h1>
+  <p class="site-description">
+    记录生活，学习以及碎碎念...
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              小程序学习摘抄笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-04-26
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="https://blog.xusz.cn/bfjxjhabf/" class="post-tag">
+                  # 小程序
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="启动流程">启动流程</h3>
+<ol>
+<li>下载小程序代码包<br>
+微信客户端打开小程序前，会把整个小程序包下载到本地。</li>
+<li>渲染小程序首页<br>
+微信客户端通过<code>app.json</code>的<code>pages</code>字段抓取小程序的所有页面。通过小程序的底层机制，微信客户端装载并渲染出首页。</li>
+<li>执行onLaunch回调<br>
+小程序启动后，在<code>app.js</code>中定义的<code>App</code>实例的 <code>onLaunch</code> 回调会被执行。整个小程序只有一个App实例，全局共享。</li>
+<li>界面生成<br>
+微信客户顿根据页面的<code>.json</code>配置文件生成一个界面。顶部的文字和颜色可以子该文件定义。</li>
+<li>装载页面结构，样式<br>
+微信客户端加载<code>.wxml</code>文件，生成页面结构；加载<code>.wxss</code>文件，显示页面结构。</li>
+<li>渲染生成页面<br>
+微信客户端装载<code>.js</code>文件，根据构造器生成页面。在生成页面的时候，小程序会把<code>Page</code>里的<code>data</code>结合<code>.wxml</code>文件一起渲染出最终的页面。</li>
+<li>执行onLoad回调<br>
+页面渲染完成后，页面实例（<code>Page</code>）会收到一个<code>onLoad</code>回调，可以在这里处理一些业务逻辑。</li>
+</ol>
+<p><strong>冷启动</strong><br>
+首次打开小程序或者小程序被微信销毁后再次打开小程序的情况，此时小程序需要重新加载启动。</p>
+<p><strong>热启动</strong><br>
+已经打开过小程序，在一定时间内再次打开小程序，无序重新启动，只需将后台态的小程序切换到前台。</p>
+<p><strong>运行机制</strong></p>
+<ul>
+<li>小程序没有重启的概念。</li>
+<li>小程序进入后台态，微信会维持一段时间的运行状态（目前是5分钟），超过时间会被微信主动销毁。</li>
+<li>微信客户端5s内收到两次以上的系统内存警告，微信会销毁小程序</li>
+</ul>
+<h3 id="技术模型">技术模型</h3>
+<p>小程序的渲染层和逻辑层运行在不同的线程中，和传统的web单线程模型有很大差异，同时也多了一些限制。</p>
+<p>小程序的架构设计要求必须要快，加载快，渲染快等。</p>
+<p>一般页面渲染的技术主要有三种：</p>
+<ol>
+<li>原生渲染</li>
+<li>WEB渲染</li>
+<li>原生与WEB混合渲染（Hybird）</li>
+</ol>
+<p>小程序的宿主环境是为微信，不可能采用原生渲染，违背了小程序的设计理念。如果纯web渲染，可能会面临复杂交互带来的性能问题，因为web是单线程的，UI渲染和JS脚本执行都在同一个线程下，脚本的执行势必占用资源，从而会对UI渲染产生影响。</p>
+<p>小程序的选择就是结合两种技术，以一种混合的方式。</p>
+<p><code>界面</code>由WEB技术渲染，有Native提供丰富接口，获取原生能力。同时，每个页面都是由不同的WebView渲染，以提供更好的，贴近原生的交互体验，也避免了单个WebView的任务过于繁重。为了统一体验，小程序提供了一套<code>内置组件</code>，和一些基础、通用的能力以降低开发门槛。有一部分较为复杂的内置组件采用Native渲染，从而获取更好的性能。</p>
+<h3 id="面临的风险">面临的风险</h3>
+<p>Web技术的繁荣得益于它的灵活和开放，开发者可以使用Web技术实现各种功能和创意。但这些功能创意在微信环境下则是不被允许的或者以特定的规则接受管控的。</p>
+<p>为了解决管控和安全问题，小程序必须阻止开发者使用一些浏览器提供的，如页面跳转，DOM操作、动态脚本执行等开放性接口。为了完全避免可能存在的风险，小程序提供了一个<code>沙箱</code>环境来运行开发者的JavaScript代码。</p>
+<h3 id="双线程的由来">双线程的由来</h3>
+<p>小程序的<code>沙箱</code>环境不支持任何浏览器相关的接口，只有纯JS的解释执行环境。像HTML5中的<code>ServiceWorker</code>、<code>WebWorker</code>特性就比较符合这样的条件。但这两者都是启用另一个线程来执行JS。考虑到小程序是多WebView架构，每个页面由不同的WebView渲染显示，在这个架构下不好去用某个WebView中的<code>ServiceWorker</code>去管理所有的页面。</p>
+<p>得益于客户端都有JS解释引擎（IOS下是内置的<code>JavaScriptCore框架</code>，安卓则是腾讯x5内核提供的<code>JsCore</code>环境），小程序可以创建一个单独的线程去执行JS，这个线程下执行的都是有关小程序业务逻辑代码，也就是小程序的逻辑层。而界面相关的任务全部都在WebView线程里执行。通过逻辑层与渲染层之间的交互，完成页面乃至小程序的运行及渲染。这就是小程序双线程模型的由来。</p>
+<table>
+<thead>
+<tr>
+<th>运行环境</th>
+<th>逻辑层</th>
+<th>渲染层</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IOS</td>
+<td>JavaScriptCore</td>
+<td>WKWebView</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>JsCore</td>
+<td>X5浏览器</td>
+</tr>
+<tr>
+<td>小程序开发者工具</td>
+<td>NWJS</td>
+<td>Chrome WebView</td>
+</tr>
+</tbody>
+</table>
+<h3 id="双线程带来的异步">双线程带来的异步</h3>
+<p>线程之间通信是需要时间的，所以小程序架构里充斥着异步。除了两个线程之间的异步通信，线程与Native之间的交互同样是异步的。</p>
+<h3 id="小程序与客户端通信原理">小程序与客户端通信原理</h3>
+<h4 id="视图层组件">视图层组件</h4>
+<p>内置组件有部分组件（原生组件）是利用Native提供的能力，这就会涉及到视图层与Native的交互通信。这层通信机制在IOS和安卓系统的实现方式不一样。</p>
+<ul>
+<li>IOS：利用<code>WKWebView</code>提供的<code>messageHandlers</code>特性</li>
+<li>安卓：向<code>WebView</code>的<code>window</code>对象注入一个原生方法，最终会封装成<code>WeiXinJSBridge</code>这样一个兼容层，主要提供了调用（<code>invoke</code>）和监听（<code>on</code>）这两种方法。</li>
+</ul>
+<h4 id="逻辑层接口">逻辑层接口</h4>
+<p><strong>App Server (逻辑层)</strong></p>
+<figure data-type="image" tabindex="1"><img src="http://assets.51xzxz.com/images/WechatIMG2207.jpg" alt="" loading="lazy"></figure>
+<p><strong>View (渲染层)</strong></p>
+<figure data-type="image" tabindex="2"><img src="http://assets.51xzxz.com/images/WechatIMG2208.png" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B">启动流程</a></li>
+<li><a href="#%E6%8A%80%E6%9C%AF%E6%A8%A1%E5%9E%8B">技术模型</a></li>
+<li><a href="#%E9%9D%A2%E4%B8%B4%E7%9A%84%E9%A3%8E%E9%99%A9">面临的风险</a></li>
+<li><a href="#%E5%8F%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%B1%E6%9D%A5">双线程的由来</a></li>
+<li><a href="#%E5%8F%8C%E7%BA%BF%E7%A8%8B%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%BC%82%E6%AD%A5">双线程带来的异步</a></li>
+<li><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86">小程序与客户端通信原理</a>
+<ul>
+<li><a href="#%E8%A7%86%E5%9B%BE%E5%B1%82%E7%BB%84%E4%BB%B6">视图层组件</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E5%B1%82%E6%8E%A5%E5%8F%A3">逻辑层接口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://blog.xusz.cn/du-ke-yi-lian-xi/">
+              <h3 class="post-title">
+                刻意练习阅读随笔
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://blog.xusz.cn//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
