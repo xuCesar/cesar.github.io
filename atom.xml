@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.xusz.cn/</id>
     <title>@你坑到我了</title>
-    <updated>2020-04-28T15:34:29.614Z</updated>
+    <updated>2020-04-28T15:39:47.270Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.xusz.cn/"/>
     <link rel="self" href="https://blog.xusz.cn/atom.xml"/>
@@ -96,7 +96,9 @@
 <li>IOS：利用<code>WKWebView</code>提供的<code>messageHandlers</code>特性</li>
 <li>安卓：向<code>WebView</code>的<code>window</code>对象注入一个原生方法，最终会封装成<code>WeiXinJSBridge</code>这样一个兼容层，主要提供了调用（<code>invoke</code>）和监听（<code>on</code>）这两种方法。</li>
 </ul>
-<h4 id="通信流程图">通信流程图</h4>
+<h4 id="逻辑层接口">逻辑层接口</h4>
+<p>逻辑层与客户端原生通信机制与渲染层类似，不同之处在于，IOS可以往<code>JavaScriptCore</code>框架中注入一个全局的原生方法，而安卓则跟渲染层保持一致。开发者通常只是间接的调用与原生客户端通信的底层接口，小程序方面会对逻辑层接口进行封装，然后暴露给开发者，封装的细节可能是统一入参、做些参数校验、兼容各平台或版本问题等。</p>
+<h3 id="通信流程图">通信流程图</h3>
 <figure data-type="image" tabindex="1"><img src="http://assets.51xzxz.com/images/WechatIMG2207.jpg" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="2"><img src="http://assets.51xzxz.com/images/WechatIMG2208.png" alt="" loading="lazy"></figure>
 ]]></content>

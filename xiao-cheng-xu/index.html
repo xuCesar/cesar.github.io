@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>小程序学习摘抄笔记 | @你坑到我了</title>
 <meta name="description" content="记录生活，学习以及碎碎念..." />
-<link rel="shortcut icon" href="https://blog.xusz.cn//favicon.ico?v=1588088063460">
+<link rel="shortcut icon" href="https://blog.xusz.cn//favicon.ico?v=1588088384712">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://blog.xusz.cn//styles/main.css">
@@ -29,7 +29,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://blog.xusz.cn/">
-  <img class="avatar" src="https://blog.xusz.cn//images/avatar.png?v=1588088063460" alt="">
+  <img class="avatar" src="https://blog.xusz.cn//images/avatar.png?v=1588088384712" alt="">
   </a>
   <h1 class="site-title">
     @你坑到我了
@@ -180,7 +180,9 @@
 <li>IOS：利用<code>WKWebView</code>提供的<code>messageHandlers</code>特性</li>
 <li>安卓：向<code>WebView</code>的<code>window</code>对象注入一个原生方法，最终会封装成<code>WeiXinJSBridge</code>这样一个兼容层，主要提供了调用（<code>invoke</code>）和监听（<code>on</code>）这两种方法。</li>
 </ul>
-<h4 id="通信流程图">通信流程图</h4>
+<h4 id="逻辑层接口">逻辑层接口</h4>
+<p>逻辑层与客户端原生通信机制与渲染层类似，不同之处在于，IOS可以往<code>JavaScriptCore</code>框架中注入一个全局的原生方法，而安卓则跟渲染层保持一致。开发者通常只是间接的调用与原生客户端通信的底层接口，小程序方面会对逻辑层接口进行封装，然后暴露给开发者，封装的细节可能是统一入参、做些参数校验、兼容各平台或版本问题等。</p>
+<h3 id="通信流程图">通信流程图</h3>
 <figure data-type="image" tabindex="1"><img src="http://assets.51xzxz.com/images/WechatIMG2207.jpg" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="2"><img src="http://assets.51xzxz.com/images/WechatIMG2208.png" alt="" loading="lazy"></figure>
 
@@ -199,9 +201,10 @@
 <li><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86">小程序与客户端通信原理</a>
 <ul>
 <li><a href="#%E8%A7%86%E5%9B%BE%E5%B1%82%E7%BB%84%E4%BB%B6">视图层组件</a></li>
-<li><a href="#%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE">通信流程图</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E5%B1%82%E6%8E%A5%E5%8F%A3">逻辑层接口</a></li>
 </ul>
 </li>
+<li><a href="#%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE">通信流程图</a></li>
 </ul>
 </li>
 </ul>
